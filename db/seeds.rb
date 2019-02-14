@@ -38,41 +38,66 @@ STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
 #   end
 # end
 
-user = User.new(
-    first_name: Faker::Name.first_name.to_s,
-    last_name: Faker::Name.last_name.to_s,
-    email: Faker::Internet.email,
-    password: "12345"
+3.times do
+  user = User.new(
+      first_name: Faker::Name.first_name.to_s,
+      last_name: Faker::Name.last_name.to_s,
+      email: Faker::Internet.email,
+      password: "somethingelse2018"
+      )
+  user.save
+
+  5.times do
+    scooter = Scooter.new(
+      make: Faker::Vehicle.make.to_s,
+      model: Faker::Vehicle.model.to_s,
+      year: rand(2010..2018).to_i,
+      location: Faker::Address.city.to_s,
+      reg_plate: Faker::Alphanumeric.alphanumeric(10),
+      # img: Faker::Placeholdit.image('50x50'),
+      price: rand(10..20),
+      user: user
     )
-user.save
+    scooter.save
 
-scooter = Scooter.new(
-  make: Faker::Vehicle.make.to_s,
-  model: Faker::Vehicle.model.to_s,
-  year: rand(2010..2018).to_i,
-  location: Faker::Address.city.to_s,
-  reg_plate: "FA02 8JK",
-  # img: Faker::Placeholdit.image('50x50'),
-  price: rand(10..20),
-  user_id: user
-)
-scooter.save
+    3.times do
+      booking = Booking.new(
+      amount: rand(10..20),
+      scooter: scooter,
+      user: user,
+      start_date: Faker::Date.backward(120),
+      end_date: Faker::Date.forward(120),
+      status: STATUS.sample
+      )
+      booking.save
 
-booking = Booking.new(
-  amount: rand(10..20),
-  scooter_id: scooter,
-  user_id: user,
-  start_date: "01-02-2019",
-  end_date: "10-02-2019",
-  status: STATUS.sample
-)
-booking.save
+      3.times do
+        review = Review.new(
+          booking: booking,
+          content: Faker::Hipster.sentences,
+          rating: rand(1..5)
+        )
+        review.save
+      end
+    end
+  end
+end
 
-review = Review.new(
-    booking_id: booking,
-    content: "some random string review",
-    rating: rand(1..5)
-  )
-review.save
+# booking = Booking.new(
+#   amount: rand(10..20),
+#   scooter: scooter,
+#   user: user,
+#   start_date: "01-02-2019",
+#   end_date: "10-02-2019",
+#   status: STATUS.sample
+# )
+# booking.save
+
+# review = Review.new(
+#     booking: booking,
+#     content: "some random string review",
+#     rating: rand(1..5)
+#   )
+# review.save
 
 puts 'Finished!'
