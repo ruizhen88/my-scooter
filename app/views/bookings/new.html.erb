@@ -1,0 +1,9 @@
+
+<div class="form-group">
+  <%= simple_form_for @booking do |f| %>
+    <%= f.input :amount, placeholder: 'Total Price', class: "form-control" %>
+    <%= f.input :start_date, as: :datetime, html5: true, class: "form-control" %>
+    <%= f.input :end_date, as: :datetime, html5: true, class: "form-control" %>
+    <%= f.submit "Request Booking", class: "btn btn-primary" %>
+  <% end %>
+</div>

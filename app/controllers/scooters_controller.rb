@@ -22,7 +22,8 @@ class ScootersController < ApplicationController
   def create
     # @owner = User.find(params[:id])
     @scooter = Scooter.new(scooter_params)
-    @scooter.user = current_user
+    @user = User.find(params[:user_id])
+    @scooter.user = @user
     # @scooter.owner = @owner
     if @scooter.save
       redirect_to @scooter
