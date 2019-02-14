@@ -7,6 +7,6 @@ class User < ApplicationRecord
   # has_many :bookings, through: :scooter
   # has_many :scooters
 
-  validates :name, :email, presence: true
+  validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
 end

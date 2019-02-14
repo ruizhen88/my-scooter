@@ -41,30 +41,31 @@ STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
 user = User.new(
     first_name: Faker::Name.first_name.to_s,
     last_name: Faker::Name.last_name.to_s,
-    email: Faker::Internet.email
+    email: Faker::Internet.email,
+    password: "12345"
     )
 user.save
 
-scooter = (
-      make: Faker::Vehicle.make.to_s,
-      model: Faker::Vehicle.model.to_s,
-      year: rand(2010..2018),
-      location: Faker::Address.city,
-      registration_plate: "FA02 8JK",
-      img: Faker::Placeholdit.image('50x50'),
-      price: rand(10..20),
-      owner: user
-      )
+scooter = Scooter.new(
+  make: Faker::Vehicle.make.to_s,
+  model: Faker::Vehicle.model.to_s,
+  year: rand(2010..2018).to_i,
+  location: Faker::Address.city.to_s,
+  reg_plate: "FA02 8JK",
+  # img: Faker::Placeholdit.image('50x50'),
+  price: rand(10..20),
+  user_id: user
+)
 scooter.save
 
 booking = Booking.new(
-    amount: rand(10..20),
-    scooter_id: ,
-    customer_id: ,
-    start_date: "01-02-2019",
-    end_date: "10-02-2019",
-    status: STATUS.sample
-  )
+  amount: rand(10..20),
+  scooter_id: scooter,
+  user_id: user,
+  start_date: "01-02-2019",
+  end_date: "10-02-2019",
+  status: STATUS.sample
+)
 booking.save
 
 review = Review.new(
