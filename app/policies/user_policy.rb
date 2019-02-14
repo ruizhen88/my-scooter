@@ -3,6 +3,7 @@ class UserPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
 
     def create?
       true
@@ -15,5 +16,4 @@ class UserPolicy < ApplicationPolicy
     def destroy?
       record.user == user
     end
-  end
 end

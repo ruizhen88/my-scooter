@@ -5,21 +5,31 @@ class ScootersController < ApplicationController
   # skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @scooters = Scooter.all
+    @scooters = policy_scope(Scooter)
   end
 
   def show
+    raise
     @scooter = Scooter.find(params[:id])
+    authorize @scooter
   end
 
   def new
+    # @scooter = current_user.scooters.new
     @scooter = Scooter.new
+    authorize @scooter
   end
 
   def create
-    @owner = User.find(params[:id])
+    # @owner = User.find(params[:id])
     @scooter = Scooter.new(scooter_params)
-    @scooter.owner = @owner
+    @scooter.user = current_user
+    # @scooter.owner = @owner
+    if @scooter.save
+      redirect_to @scooter
+    else
+      render :new
+    end
   end
 
   def edit
@@ -34,12 +44,12 @@ class ScootersController < ApplicationController
     @owner = User.find(params[:id])
     @scooter = Scooter.find(params[:id])
     @scooter.destroy
-    redirect_to owner_dashboarda
+    redirect_to owner_dashboard
   end
 
   private
 
-  def dose_params
-    params.require(:dose).permit(:description, :ingredient_id)
+  def scooter_params
+    params.require(:scooter).permit(:make, :model, :year, :location, :reg_plate, :img, :price)
   end
 end

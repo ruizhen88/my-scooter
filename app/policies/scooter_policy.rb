@@ -3,6 +3,11 @@ class ScooterPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
+  end
+
+    def show?
+      true
+    end
 
     def create?
       true
@@ -15,5 +20,5 @@ class ScooterPolicy < ApplicationPolicy
     def destroy?
       record.user == user
     end
-  end
 end
+
