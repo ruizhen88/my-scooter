@@ -54,7 +54,7 @@ STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
       year: rand(2010..2018).to_i,
       location: Faker::Address.city.to_s,
       reg_plate: Faker::Alphanumeric.alphanumeric(10),
-      # img: Faker::Placeholdit.image('50x50'),
+      img: Faker::Placeholdit.image('50x50'),
       price: rand(10..20),
       user: user
     )

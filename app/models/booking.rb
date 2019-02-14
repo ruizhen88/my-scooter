@@ -5,8 +5,8 @@ class Booking < ApplicationRecord
 
   validates_numericality_of :amount
 
-  validates :after_today
-  validates_with DateRangeValidator
+  # validates :after_today
+  # validates_with DateRangeValidator
 
   private
 
