@@ -5,7 +5,7 @@ class Booking < ApplicationRecord
   validates_numericality_of :amount
 end
 
-# validate :date_range, uniqueness: { scope: [:scooter_id] }
+# validate :scooter_id, uniqueness: { scope: [lambda(:end_date - :start_date)] }
 
 # We can customize a method to calculate period or find from lib
 # def date_range
