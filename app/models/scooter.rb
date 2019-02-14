@@ -1,5 +1,6 @@
 class Scooter < ApplicationRecord
-  belongs_to :user, foreign_key: "owner_id", class_name: "User"
+  # belongs_to :user, foreign_key: "owner_id", class_name: "User"
+  belongs_to :user
   has_many :bookings
   has_many :reviews, through: :bookings
 
