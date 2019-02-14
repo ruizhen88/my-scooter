@@ -1,0 +1,12 @@
+<h1>Here be the scoots</h1>
+
+<ol>
+<% @scooters.each do |scooter| %>
+  <li>
+    <%= link_to(scooter) do %>
+      <%= scooter.make %>
+      <%= scooter.model %>
+    <% end %>
+  </li>
+  <% end %>
+</ol>
