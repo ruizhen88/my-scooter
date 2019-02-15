@@ -1,14 +1,21 @@
 <h1>Here be the scoots</h1>
 
-<ol>
-<% @scooters.each do |scooter| %>
-  <li>
-    <%= link_to(scooter) do %>
-      <%= scooter.make %>
-      <%= scooter.model %>
-      | Price Per Day:
-      <%= scooter.price %>
+<div class="container">
+  <div class="row">
+    <% @scooters.each do |scooter| %>
+      <div class="col-xs-12 col-sm-4">
+        <div class="card">
+          <div class="card-image">
+            <%= image_tag image_url('https://www.2twentyscooters.com/wp-content/uploads/2017/09/Scooter-bleu-1120_830.jpg') %>
+          </div>
+          <div class="card-description">
+            <%= link_to(scooter) do %>
+              <h2><%= scooter.make %></h2>
+              <p><%= scooter.model %> | Price Per Day: <%= scooter.price %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
-  </li>
-  <% end %>
-</ol>
+  </div>
+</div>
