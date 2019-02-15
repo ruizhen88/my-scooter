@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="container-box">
+    <div class="photo-box">
+      <%= image_tag @booking.scooter.img %>
+    </div>
+    <div class="summary-box">
+      <h3>Status: <%= @booking.status %></h3>
+      <p>You will be notified once the owner has accepted the booking request.</p>
+      <br>
+      <p>Scooter Model: <%= @booking.scooter.make %> <%= @booking.scooter.model %></p>
+      <p>Rental Start Date: <%= @booking.start_date %></p>
+      <p>Rental End Date:  <%= @booking.end_date %></p>
+      <br>
+      <p>Name: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+      <br>
+      <p>Total Price: <%= @booking.amount %>
+    </div>
+    <%= link_to "Continue", scooter_path(params[:scooter_id]) %>
+  </div>
+</div>
+

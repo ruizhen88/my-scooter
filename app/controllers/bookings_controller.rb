@@ -14,19 +14,20 @@ class BookingsController < ApplicationController
   def new
     # @booking = current_user.bookings.new
     @booking = Booking.new
+    @scooter = Scooter.find(params[:scooter_id])
     authorize @booking
   end
 
   def create
-    # @owner = User.find(params[:id])
     @booking = Booking.new(booking_params)
-    @user = User.find(params[:user_id])
-    @scooter = Scooter.find(params[:scooter_id])
-    @booking.user_id = @user
-    @booking.scooter_id = @scooter
-    # @booking.owner = @owner
+    @booking.user = current_user
+    @booking.status = "Pending"
+    @booking.scooter = Scooter.find(params[:scooter_id])
+    @booking.amount = amount_calculation(@booking)
+    authorize @booking
+
     if @booking.save
-      redirect_to @booking
+      redirect_to scooter_booking_path(@booking.scooter, @booking)
     else
       render :new
     end
@@ -41,6 +42,10 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:amount, :start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date)
+  end
+
+  def amount_calculation(booking)
+    return booking.scooter.price * (booking.end_date - booking.start_date).to_i
   end
 end
