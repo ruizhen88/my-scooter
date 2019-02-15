@@ -1,8 +1,42 @@
-<h1>this be the scoot</h1>
 
-<%= @scooter.make %> <%= @scooter.model %> <%= @scooter.price %>
+<div class="showbanner" >
+  <div class="showbanner-content">
+    <h1>Guido's scooter</h1>
+    <div class="btn btn-danger btn-lg"><%= link_to "BOOK NOW", new_scooter_booking_path(@scooter) %>
+    </div>
+
+  </div>
+</div>
 
 
-<%= link_to "Book Scooter", new_scooter_booking_path(@scooter) %>
 
-<%= link_to "Return", scooters_path %>
+
+<div class="container">
+  <div class="row">
+   <div class="col-xs-6 col-sm-4">
+    <h3 class="text-center"> Details </h3>
+      <table class="table table-condensed">
+        <tr>
+          <td><strong> Owner </strong></td>
+          <td>Guido</td>
+        <tr>
+        <tr>
+          <td><strong> Model </strong></td>
+          <td><%= @scooter.model %></td>
+        <tr>
+        <tr>
+          <td><strong>Make</strong></td>
+          <td><%= @scooter.make %></td>
+        </tr>
+        <tr>
+          <td> <strong>Price per day</strong></td>
+          <td><%= @scooter.price %> kIDR </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to "  < Return to the list", scooters_path %>
+
