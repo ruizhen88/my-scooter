@@ -1,6 +1,8 @@
 <h1>this be the scoot</h1>
 
-<%= @scooter.make %> <%= @scooter.model %>
+<%= @scooter.make %> <%= @scooter.model %> <%= @scooter.price %>
 
 
 <%= link_to "Book Scooter", new_user_scooter_booking_path(current_user, @scooter.id) %>
+
+<%= link_to "Return", scooters_path %>

@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     resources :scooters do
       resources :bookings
     end
+    resources :bookings, only: [ :index, :show ]
   end
 end

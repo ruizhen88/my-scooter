@@ -1,9 +1,7 @@
-class BookingsController < ApplicationController
-  # *** LOGIN OPTION ***
-  # skip_before_action :authenticate_user!, only: [:index, :show]
+class ReviewsController < ApplicationController
 
   def index
-    @bookings = policy_scope(Booking)
+    @reviews = policy_scope(Review)
   end
 
   def show
@@ -12,7 +10,6 @@ class BookingsController < ApplicationController
   end
 
   def new
-    # @booking = current_user.bookings.new
     @booking = Booking.new
     authorize @booking
   end
@@ -36,11 +33,5 @@ class BookingsController < ApplicationController
   end
 
   def update
-  end
-
-  private
-
-  def booking_params
-    params.require(:booking).permit(:amount, :start_date, :end_date)
   end
 end
