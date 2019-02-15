@@ -1,9 +1,8 @@
 
 <div class="form-group">
-  <%= simple_form_for @booking do |f| %>
-    <%= f.input :start_date, as: :datetime, html5: true, class: "form-control" %>
-    <%= f.input :end_date, as: :datetime, html5: true, class: "form-control" %>
-    <%= f.input :amount, placeholder: 'Total Price', class: "form-control" %>
+  <%= simple_form_for [@scooter, @booking] do |f| %>
+    <%= f.input :start_date, as: :date, html5: true, class: "form-control" %>
+    <%= f.input :end_date, as: :date, html5: true, class: "form-control" %>
     <%= f.submit "Request Booking", class: "btn btn-primary" %>
   <% end %>
 </div>
