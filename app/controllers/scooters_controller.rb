@@ -2,7 +2,7 @@ class ScootersController < ApplicationController
   # All scooters show up on the first page
 
   # *** LOGIN OPTION ***
-  # skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @scooters = policy_scope(Scooter)
