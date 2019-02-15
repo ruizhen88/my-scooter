@@ -1,0 +1,11 @@
+
+<div class="form-group">
+  <%= simple_form_for @booking do |f| %>
+    <%= f.input :start_date, as: :datetime, html5: true, class: "form-control" %>
+    <%= f.input :end_date, as: :datetime, html5: true, class: "form-control" %>
+    <!-- <%=# f.input :amount, placeholder: 'Total Price', class: "form-control" %>  add method to fetch price and total up total price based on duration of rent -->
+    <%= f.submit "Request Booking", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<%= link_to "Return", scooter_path(params[:scooter_id]) %>
