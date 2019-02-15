@@ -7,14 +7,17 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'Cleaning database...'
-User.destroy_all
-Scooter.destroy_all
-Booking.destroy_all
+
 Review.destroy_all
+Booking.destroy_all
+Scooter.destroy_all
+User.destroy_all
 
 puts 'Creating database entries...'
 
 STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
+# images = asset_url("avatar_pic_sonia.jpg")
+IMAGES = ["https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221123/daniel-von-appen-266183-unsplash.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550220696/home_vespa.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221138/nick-fewings-1307214-unsplash.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221128/simon-roth-800367-unsplash.jpg"]
 
 # *** Commented out for testing..eventually would like to loop and populate DBs with more information  ***
 # 10.times do
@@ -54,10 +57,10 @@ STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
       year: rand(2010..2018).to_i,
       location: Faker::Address.city.to_s,
       reg_plate: Faker::Alphanumeric.alphanumeric(10),
-      img: Faker::Placeholdit.image('50x50'),
       price: rand(10..20),
       user: user
     )
+    scooter.remote_img_url = IMAGES.sample
     scooter.save
 
     3.times do
@@ -82,6 +85,7 @@ STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
     end
   end
 end
+
 
 # booking = Booking.new(
 #   amount: rand(10..20),
