@@ -2,26 +2,14 @@
   background-size: cover !important;
   background-color: white;
   position: relative;
-  width: 300px;
+  width: 250px;
   margin: 10px;
-}
-.card-user {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 40px;
-  border-radius: 50%;
-}
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 15px;
-  text-transform: uppercase;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px !important;
 }
 .card-image {
   img {
     width: 100%;
+    padding: 10px;
   }
 }
 .card-description {
@@ -30,20 +18,24 @@
   padding: 10px;
 }
 .card-description h2 {
-  margin: 0;
-  font-size: 24px;
+  margin: 0 0 15px 0;
+  font-size: 20px;
   color: #000000;
 }
 .card-description p {
   opacity: 0.7;
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 14px;
   color: #C4C4C4;
 }
-.card-trip-infos .card-trip-user {
+.card-description-right {
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+.card-user {
   position: absolute;
   right: 16px;
-  top: -15px;
   width: 40px;
 }
 .card-link {
@@ -59,3 +51,13 @@
 .card-link:hover {
   opacity: 0.1;
 }
+
+// card css from Le Wagon UI Kit
+
+// .card-category {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   font-size: 15px;
+//   text-transform: uppercase;
+// }
