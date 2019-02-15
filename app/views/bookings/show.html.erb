@@ -1,7 +1,7 @@
 <div class="container">
   <div class="container-box">
     <div class="photo-box">
-      <%= image_tag @booking.scooter.img %>
+      <%= cl_image_tag @booking.scooter.img, height: 300, width: 400, crop: :fill %>
     </div>
     <div class="summary-box">
       <h3>Status: <%= @booking.status %></h3>
@@ -13,7 +13,7 @@
       <br>
       <p>Name: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
       <br>
-      <p>Total Price: <%= @booking.amount %>
+      <p>Total Price: IDR <%= @booking.amount %>
     </div>
     <%= link_to "Continue", scooter_path(params[:scooter_id]) %>
   </div>
