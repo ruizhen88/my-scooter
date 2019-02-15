@@ -11,7 +11,7 @@
 
       <!-- Links when logged in -->
       <%= link_to "Scooters", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Bookings", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to "Bookings", user_bookings_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
 
       <!-- Avatar with dropdown menu -->
