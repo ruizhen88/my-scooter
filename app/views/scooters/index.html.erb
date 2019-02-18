@@ -6,9 +6,7 @@
       <div class="col-xs-12 col-sm-3">
         <div class="card">
           <div class="card-image">
-            <!-- replaced cl_image_tag with random image until fully functional -->
-            <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-image"/>
-            <%#= cl_image_tag scooter.img, height: 250, width: 350, crop: :fill%>
+            <%= cl_image_tag scooter.img, height: 250, width: 350, crop: :fill%>
           </div>
           <div class="card-description">
             <%= link_to(scooter) do %>
