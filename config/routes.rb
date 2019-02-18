@@ -9,11 +9,14 @@ Rails.application.routes.draw do
   get '/my_scooters', to: 'pages#my_scooters'
   resources :scooters do
     resources :bookings
+    resources :reviews, only: [ :index ]
   end
 
 
   resources :users do
-    resources :bookings, only: [ :index, :show ]
+    resources :bookings, only: [ :index, :show ] do
+      resources :reviews, only: [ :new, :create ]
+    end
   end
 
 

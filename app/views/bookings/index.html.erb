@@ -29,6 +29,9 @@
             <strong>Status</strong>
           <% end %>
         </li>
+        <li>
+          <strong>Review</strong>
+          <p><%= link_to "Review", new_user_booking_review_path(booking.user_id, booking.id) %></p>
         </li>
       </ul>
     </div>
