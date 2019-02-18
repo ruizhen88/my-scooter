@@ -34,17 +34,20 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @scooter = Scooter.find(params[:scooter_id])
     @booking = Booking.find(params[:id])
     authorize @booking
-
+    @status = ["Accepted", "Pending", "Cancelled"]
   end
 
   def update
     @booking = Booking.find(params[:id])
     authorize @booking
-
-    @booking.update(booking_params)
-    redirect_to scooter_booking_path(@booking.scooter, @booking)
+    if @booking.update(booking_params)
+      redirect_to user_bookings_path(current_user)
+    else
+      render :edit
+    end
   end
 
   private

@@ -1,10 +1,29 @@
+<div class="summary-box">
+  <h3>Status: <%= @booking.status %></h3>
+
+  <% if policy(@booking).edit? %>
+    <p> You have a new request from a customer. </p>
+  <% else %>
+    <p> You will be notified once the owner has accepted the booking request.</p>
+  <% end %>
+
+
+  <br>
+  <p>Scooter Model: <%= @booking.scooter.make %> <%= @booking.scooter.model %></p>
+  <p>Rental Start Date: <%= @booking.start_date %></p>
+  <p>Rental End Date:  <%= @booking.end_date %></p>
+  <br>
+  <p>Name: <%= @scooter.user.first_name %> <%= @scooter.user.last_name %></p>
+  <br>
+  <p>Total Price: IDR <%= @booking.amount %>
+</div>
+
 <div class="form-group">
-  <%= simple_form_for [@scooter, @booking] do |f| %>
-    <%= f.input :start_date, as: :date, html5: true, class: "form-control" %>
-    <%= f.input :end_date, as: :date, html5: true, class: "form-control" %>
-    <%= f.input :status %>
-    <%= f.submit "Request Booking", class: "btn btn-primary" %>
+  <%= simple_form_for([@scooter, @booking]) do |f| %>
+    <%= f.input :status, collection: @status, include_blank: false  %>
+    <%= f.submit "Confirm status", class: "btn btn-primary" %>
   <% end %>
 </div>
 
 <%= link_to "Return", scooter_path(params[:scooter_id]) %>
+
