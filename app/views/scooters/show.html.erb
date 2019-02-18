@@ -30,10 +30,28 @@
           <td><%= @scooter.price %> k IDR </td>
         </tr>
       </table>
-
     </div>
+  </div>
+  <div class="row">
+    <% @scooter.reviews.each do |review| %>
+      <div class="col-xs-12 col-sm-3">
+        <div class="card">
+          <div class="card-description">
+            <h2><%= review.rating %></h2>
+            <% review.rating.to_i.times do  %>
+              <span class="glyphicon glyphicon-star"></span>
+            <% end %>
+            <% (5 - review.rating.to_i).times do %>
+              <span class="glyphicon glyphicon-star-empty"></span>
+            <% end %>
+            <p><%= review.content %></p>
+          </div>
+          <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-user avatar-large"/>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
 
-<%= link_to "  < Return to the list", scooters_path %>
+<%= link_to " < Return to the list", scooters_path %>
 
