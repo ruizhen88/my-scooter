@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   # *** LOGIN OPTION ***
-  # skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @bookings = policy_scope(Booking)
@@ -34,15 +34,23 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @booking = Booking.find(params[:id])
+    authorize @booking
+
   end
 
   def update
+    @booking = Booking.find(params[:id])
+    authorize @booking
+
+    @booking.update(booking_params)
+    redirect_to scooter_booking_path(@booking.scooter, @booking)
   end
 
   private
 
   def booking_params
-    params.require(:booking).permit(:start_date, :end_date)
+    params.require(:booking).permit(:start_date, :end_date, :status)
   end
 
   def amount_calculation(booking)

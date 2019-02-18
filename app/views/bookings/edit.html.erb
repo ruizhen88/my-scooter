@@ -1,0 +1,10 @@
+<div class="form-group">
+  <%= simple_form_for [@scooter, @booking] do |f| %>
+    <%= f.input :start_date, as: :date, html5: true, class: "form-control" %>
+    <%= f.input :end_date, as: :date, html5: true, class: "form-control" %>
+    <%= f.input :status %>
+    <%= f.submit "Request Booking", class: "btn btn-primary" %>
+  <% end %>
+</div>
+
+<%= link_to "Return", scooter_path(params[:scooter_id]) %>
