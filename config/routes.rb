@@ -6,17 +6,20 @@ Rails.application.routes.draw do
   # resources :scooters
   # post '/users/:user_id/scooters/:scooter_id/bookings/', to: 'bookings#create', as: 'bookings'
 
+  get '/my_scooters', to: 'pages#my_scooters'
   resources :scooters do
     resources :bookings
   end
 
-  resources :bookings, only: :show
 
   resources :users do
     resources :bookings, only: [ :index, :show ]
   end
 
+
   resources :conversations do
     resources :messages
   end
+
+  resources :bookings, only: [:show]
 end

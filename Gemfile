@@ -18,8 +18,7 @@ gem 'webpacker'
 
 gem 'devise'
 gem 'pundit'
-
-gem 'simple_form'
+gem 'pg_search'
 
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
