@@ -8,6 +8,8 @@ class Booking < ApplicationRecord
   # validates :after_today
   # validates_with DateRangeValidator
 
+  validates :status, presence: true
+
   private
 
   def after_today
