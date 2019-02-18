@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   resources :users do
     resources :bookings, only: [ :index, :show ]
   end
+
+  resources :conversations do
+    resources :messages
+  end
 end
