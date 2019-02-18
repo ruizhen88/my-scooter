@@ -1,7 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :scooter
-  # belongs_to :user, foreign_key: "customer_id", class_name: "User"
   belongs_to :user
+  has_one :review
 
   validates_numericality_of :amount
 
