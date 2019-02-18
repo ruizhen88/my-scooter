@@ -8,11 +8,14 @@ Rails.application.routes.draw do
 
   resources :scooters do
     resources :bookings
+    resources :reviews, only: [ :index ]
   end
 
   resources :bookings, only: :show
 
   resources :users do
-    resources :bookings, only: [ :index, :show ]
+    resources :bookings, only: [ :index, :show ] do
+      resources :reviews, only: [ :new, :create ]
+    end
   end
 end
