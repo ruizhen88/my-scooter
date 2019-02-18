@@ -5,7 +5,11 @@ class ScootersController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @scooters = policy_scope(Scooter)
+    if params[:query].present?
+      @scooters = policy_scope(Scooter).search_by_everything(params[:query])
+    else
+      @scooters = policy_scope(Scooter)
+    end
   end
 
   def show
@@ -48,6 +52,10 @@ class ScootersController < ApplicationController
     @scooter = Scooter.find(params[:id])
     @scooter.destroy
     redirect_to owner_dashboard
+  end
+
+  def list_user_scooters
+    @scooters = Scooter.where(user_id: current_user)
   end
 
   private

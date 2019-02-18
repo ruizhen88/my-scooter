@@ -1,37 +1,32 @@
 class ReviewsController < ApplicationController
-
   def index
     @reviews = policy_scope(Review)
   end
 
-  def show
-    @booking = Booking.find(params[:id])
-    authorize @booking
-  end
-
   def new
-    @booking = Booking.new
-    authorize @booking
+    @review = Review.new
+    @user = User.find(params[:user_id])
+    @booking = Booking.find(params[:booking_id])
+    authorize @review
   end
 
   def create
-    # @owner = User.find(params[:id])
-    @booking = Booking.new(booking_params)
-    @user = User.find(params[:user_id])
-    @scooter = Scooter.find(params[:scooter_id])
-    @booking.user_id = @user
-    @booking.scooter_id = @scooter
-    # @booking.owner = @owner
-    if @booking.save
-      redirect_to @booking
+    @review = Review.new(review_params)
+    @booking = Booking.find(params[:booking_id])
+    @review.booking = @booking
+    authorize @review
+
+    if @review.save
+      redirect_to scooter_path(@review.booking.scooter)
     else
       render :new
     end
+    # need to validate if booking period has ended
   end
 
-  def edit
-  end
+  private
 
-  def update
+  def review_params
+    params.require(:review).permit(:content, :rating)
   end
 end

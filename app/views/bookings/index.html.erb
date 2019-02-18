@@ -23,9 +23,15 @@
           <p><%= booking.end_date %></p>
         </li>
         <li>
-          <strong>Status</strong>
-          <p><%= booking.status %></p>
+          <% if policy(booking).edit? %>
+            <%= link_to booking.status, edit_scooter_booking_path(booking.scooter, booking)  %>
+          <% else %>
+            <strong>Status</strong>
+          <% end %>
         </li>
+        <li>
+          <strong>Review</strong>
+          <p><%= link_to "Leave a Review", new_user_booking_review_path(booking.user_id, booking.id) %></p>
         </li>
       </ul>
     </div>
