@@ -54,5 +54,8 @@
 
 <%= link_to " < Return to the list", scooters_path %>
 
-<%= link_to 'Message', conversations_path(sender_id: @current_user.id, recipient_id: @scooter.user.id), method: 'post'%>
-
+<% if current_user.present? %>
+  <%= link_to 'Message', conversations_path(sender_id: @current_user.id, recipient_id: @scooter.user.id), method: 'post'%>
+<% else %>
+  <%= link_to "Please sign up to message the owner", new_user_registration_path %>
+<% end %>

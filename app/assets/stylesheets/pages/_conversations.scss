@@ -1,19 +1,31 @@
 .inbox-container {
+  display: flex;
+  flex-direction:column;
+  margin-top: 25px;
+  height: calc(100vh - 70px);
+}
+
+.messages-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   margin-top: 25px;
   height: calc(100vh - 70px);
 }
 
-.inbox {
+
+.profile-card {
   background: white;
   border-radius: 15px;
   padding: 25px;
   margin: 20px;
 }
 
-.contact {
-
+.inbox-card {
+  width: 70vw;
+  background: white;
+  margin: 25px;
+  padding: 25px;
+  border-radius: 10px;
 }
 
 .messages {

@@ -41,6 +41,7 @@ class ScootersController < ApplicationController
     @scooter.user = @user
     authorize @scooter
 
+
     # @scooter.owner = @owner
     if @scooter.save
       redirect_to @scooter
