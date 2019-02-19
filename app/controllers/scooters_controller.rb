@@ -54,10 +54,6 @@ class ScootersController < ApplicationController
     redirect_to owner_dashboard
   end
 
-  def list_user_scooters
-    @scooters = Scooter.where(user_id: current_user)
-  end
-
   private
 
   def scooter_params
