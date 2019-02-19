@@ -1,7 +1,11 @@
 class BookingPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      if user.scooters.present?
+        scope.joins(:scooter).where(user: user)
+      else
+        scope.where(user: user)
+      end
     end
   end
 
