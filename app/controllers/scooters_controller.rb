@@ -6,18 +6,16 @@ class ScootersController < ApplicationController
 
   def index
     if params[:query].present?
-      # @scooters_policy = policy_scope(Scooter).search_by_everything(params[:query])
       @scooters = policy_scope(Scooter).search_by_everything(params[:query])
-      # @scooters_policy.where.not(latitude: nil, longitude: nil)
     else
       @scooters = policy_scope(Scooter)
     end
+    # return @scooters.where.not(latitude: nil, longitude: nil)
     @markers = @scooters.map do |scooter|
       {
         lng: scooter.longitude,
-        lat: scooter.latitude
-        # infoWindow: render_to_string(partial: "infowindow", locals: { scooter: scooter }),
-        # image_url: helpers.asset_url('bali_scooter.jpg')
+        lat: scooter.latitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { scooter: scooter }),
       }
     end
   end
