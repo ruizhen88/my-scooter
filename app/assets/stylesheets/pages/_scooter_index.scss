@@ -1,0 +1,16 @@
+.index-body {
+  display: flex;
+  width: 100%;
+}
+
+.results {
+  flex: 0 1 auto;
+}
+
+#map {
+  height: calc(100vh - 70px);
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  flex: 0 1 30vw;
+}

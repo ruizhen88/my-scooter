@@ -19,6 +19,7 @@ gem 'webpacker'
 gem 'devise'
 gem 'pundit'
 gem 'pg_search'
+gem 'geocoder'
 
 gem 'cloudinary', '~> 1.9.1'
 gem 'carrierwave', '~> 1.2'
