@@ -5,6 +5,9 @@ class MessagesController < ApplicationController
   end
 
   def index
+    @conversations = Conversation.all
+    @conversations = policy_scope(Conversation)
+    authorize @conversations
     @messages = @conversation.messages
     @message = @conversation.messages.new
     authorize @messages
