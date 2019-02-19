@@ -4,7 +4,8 @@
   <%= link_to "Back to home", root_path %>
   <% @bookings.each do |booking| %>
     <div class="product">
-      <img class="product-image" src="https://www.2twentyscooters.com/wp-content/uploads/2017/09/Scooter-bleu-1120_830.jpg">
+      <%= cl_image_tag booking.scooter.img, height: 150, width: 250, crop: :fill %>
+      <!-- <img class="product-image" src="https://www.2twentyscooters.com/wp-content/uploads/2017/09/Scooter-bleu-1120_830.jpg"> -->
       <div class="product-body">
         <h3><%= booking.scooter.make %> <%= booking.scooter.model %></h3>
         <p>ID: <%= booking.scooter.reg_plate %></p>
@@ -12,7 +13,7 @@
       <ul class="list-inline product-controls hidden-sm hidden-xs">
         <li>
           <strong>Total price</strong>
-          <p><%= booking.scooter.price * (booking.end_date - booking.start_date).to_i %> IDR</p>
+          <p><%= booking.amount %> IDR</p>
         </li>
         <li>
           <strong>Start date</strong>
