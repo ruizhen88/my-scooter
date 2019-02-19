@@ -1,6 +1,6 @@
 <!-- Need a redirection and root -->
 <div class="container">
-  <h1>My Scooters</h1>
+  <h1 class="banner_small">My Scooters</h1>
   <%= link_to "Back to home", root_path %>
   <% @scooters_users.each do |scooter| %>
     <%= link_to scooter_path(scooter.id) do %>
