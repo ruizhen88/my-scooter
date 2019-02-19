@@ -1,0 +1,11 @@
+<div class="card">
+<div class="card-image">
+  <%= cl_image_tag scooter.img, width: 80, height: 150, crop: :scale%>
+</div>
+<div class="card-description">
+  <h2><%= scooter.make %> <%= scooter.model %> (<%= scooter.year %>)</h2>
+  <%= scooter.price %> IDR/day<br>
+  <%= scooter.location %>
+</div>
+<%= cl_image_tag scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
+</div>
