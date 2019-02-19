@@ -1,21 +1,29 @@
+
 <div class="container">
   <div class="row">
-    <div class="col-sm-8 col-sm-offset-2">
-      <h1 class="text-center">add yo scoot</h1>
-      <div class="form-group text-center">
-        <%= simple_form_for @scooter do |f| %>
-          <%= f.input :make, class: "form-control" %>
-          <%= f.input :model, class: "form-control" %>
-          <%= f.input :year, as: :integer, class: "form-control" %>
-          <%= f.input :location, class: "form-control" %>
-          <%= f.input :reg_plate, class: "form-control" %>
-          <%= f.input :img %>
-          <%= f.input :img_cache, as: :hidden %>
-          <%= f.input :price, class: "form-control" %>
-          <%= f.submit "Add Scooter", class: "btn btn-primary" %>
-        <% end %>
-      <%= link_to "Return", user_path(current_user) %>
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="form">
+        <div class="banner_small" >
+          <div class="banner-content">
+            <h1>Add your scooter</h1>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= simple_form_for @scooter do |f| %>
+            <%= f.input :make, class: "form-control" %>
+            <%= f.input :model, class: "form-control" %>
+            <%= f.input :year, as: :integer, class: "form-control" %>
+            <%= f.input :location, class: "form-control" %>
+            <%= f.input :reg_plate, class: "form-control" %>
+            <%= f.input :img %>
+            <%= f.input :img_cache, as: :hidden %>
+            <%= f.input :price, class: "form-control" %>
+            <%= f.submit "Add Scooter", class: "btn btn-primary" %>
+          <% end %>
+        <%= link_to "Return", user_path(current_user) %>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
