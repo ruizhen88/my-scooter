@@ -1,23 +1,7 @@
-<div class="inbox-container col-sm-10 col-sm-offset-1">
+<div class="messages-container col-sm-10 col-sm-offset-1">
 
-  <div class="inbox">
-    <div>
-      <p>Messages List:</p>
-      <% @conversations.each do |conversation| %>
-        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-          <% if conversation.sender_id == current_user.id %>
-            <% @recipient = User.find(conversation.recipient_id) %>
-          <% else %>
-            <% @recipient = User.find(conversation.sender_id) %>
-          <% end %>
-          <%= link_to(conversation_messages_path(conversation)) do%>
-            <div class="contact">
-              <%= @recipient.first_name.capitalize %>
-            </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
+  <div class="profile-card">
+    <h4>User Profile</h4>
   </div>
 
   <div class="messages">
@@ -34,13 +18,13 @@
                 <%= message.message_time %>
               </p>
             </div>
-            <%= image_tag "avatar_pic_sonia.jpg", class: "avatar-message" %>
+            <%= cl_image_tag user.image, class: "avatar-message" %>
           </div>
 
         <% else %>
 
           <div class="message-card-recipient">
-            <%= image_tag "guido_moto.jpg", class: "avatar-message" %>
+            <%= cl_image_tag user.image, class: "avatar-message" %>
             <div class="message-content">
               <%= message.body %> <br>
               <p>
