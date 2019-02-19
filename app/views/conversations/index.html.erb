@@ -1,20 +1,20 @@
-<div class="container">
-
-  <div>
-    <p>Messages List:</p>
+<div class="inbox-container col-sm-10 col-sm-offset-1">
+    <div><h3>Inbox</h3></div>
     <% @conversations.each do |conversation| %>
-      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-        <% if conversation.sender_id == current_user.id %>
-          <% @recipient = User.find(conversation.recipient_id) %>
-        <% else %>
-          <% @recipient = User.find(conversation.sender_id) %>
+    <% raise %>
+      <div class="inbox-card">
+        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% @recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% @recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to(conversation_messages_path(conversation)) do%>
+
+              <%= @recipient.first_name.capitalize %>
+
+          <% end %>
         <% end %>
-        <%= link_to(conversation_messages_path(conversation)) do%>
-          <div>
-            <%= @recipient.first_name.capitalize %>
-          </div>
-        <% end %>
-      <% end %>
+        </div>
     <% end %>
-  </div>
 </div>
