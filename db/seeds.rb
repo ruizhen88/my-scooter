@@ -55,7 +55,7 @@ IMAGES = ["https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221123/daniel-
       make: Faker::Vehicle.make.to_s,
       model: Faker::Vehicle.model.to_s,
       year: rand(2010..2018).to_i,
-      location: Faker::Address.city.to_s,
+      location: ["Canggu", "Ubud", "Denpasar", "Seminyak", "Kuta", "Uluwatu"].sample,
       reg_plate: Faker::Alphanumeric.alphanumeric(10),
       price: rand(10..20),
       user: user
