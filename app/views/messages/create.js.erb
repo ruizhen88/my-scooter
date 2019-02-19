@@ -1,0 +1,14 @@
+console.log("is this working?")
+
+// function refreshForm(innerHTML) {
+//   const newMessageForm = document.getElementById('new_message');
+//   newMessageForm.innerHTML = innerHTML;
+// }
+
+function addMessage(messageHTML) {
+  const messages = document.querySelector('.messages');
+  messages.insertAdjacentHTML('afterbegin', messageHTML);
+}
+
+addMessage('<%= j render "messages/show", message: @message %>');
+

@@ -5,9 +5,6 @@ class MessagesController < ApplicationController
   end
 
   def index
-    @conversations = Conversation.all
-    @conversations = policy_scope(Conversation)
-    authorize @conversations
     @messages = @conversation.messages
     @message = @conversation.messages.new
     authorize @messages
@@ -20,7 +17,16 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.new(message_params)
-    redirect_to conversation_messages_path(@conversation) if @message.save
+    @message.save
+    # if @message.save
+    #   respond_to do |format|
+    #     format.js
+    #   end
+    # else
+    #   respond_to do |format|
+    #     format.js
+    #   end
+    # end
     authorize @message
   end
 

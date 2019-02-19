@@ -1,0 +1,45 @@
+<div class="messages">
+  <% messages.each do |message| %>
+    <% if message.body %>
+      <% user = User.find(message.user_id) %>
+      <% if user == @current_user %>
+
+        <div class="message-card">
+          <div class="message-content">
+            <%= message.body %> <br>
+            <p>
+             <strong><%= user.first_name.capitalize %></strong> @
+              <%= message.message_time %>
+            </p>
+          </div>
+          <%= image_tag "avatar_pic_sonia.jpg", class: "avatar-message" %>
+        </div>
+
+      <% else %>
+
+        <div class="message-card-recipient">
+          <%= image_tag "guido_moto.jpg", class: "avatar-message" %>
+          <div class="message-content">
+            <%= message.body %> <br>
+            <p>
+             <strong><%= user.first_name.capitalize %></strong> @
+              <%= message.message_time %>
+            </p>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  <% end %>
+  <div class="new-message">
+    <%= form_for [conversation, Message.new], html: {class: "new-message-content"}, remote: true do |f| %>
+      <div class="field">
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+        <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+      <div class="send-button">
+        <%= f.submit "Send" %>
+      </div>
+    <% end %>
+  </div>
+</div>
