@@ -16,92 +16,109 @@ User.destroy_all
 puts 'Creating database entries...'
 
 STATUS = ["Accepted", "Pending", "Cancelled", "Completed"]
-# images = asset_url("avatar_pic_sonia.jpg")
 IMAGES = ["https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221123/daniel-von-appen-266183-unsplash.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550220696/home_vespa.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221138/nick-fewings-1307214-unsplash.jpg", "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550221128/simon-roth-800367-unsplash.jpg"]
 
-# *** Commented out for testing..eventually would like to loop and populate DBs with more information  ***
-# 10.times do
-#   users = User.new(
-#     first_name: Faker::Name.first_name.to_s,
-#     last_name: Faker::Name.last_name.to_s,
-#     email: Faker::Internet.email
-#   )
-#   users.save
-#   5.times do
-#     scooters = (
-#       make: Faker::Vehicle.make.to_s,
-#       model: Faker::Vehicle.model.to_s,
-#       year: rand(2010..2018),
-#       location: Faker::Address.city,
-#       registration_plate: "FA02 8JK",
-#       img: Faker::Placeholdit.image('50x50'),
-#       price: rand(10..20),
-#       owner: user
-#     )
-#   end
-# end
+Users = {
+  Romain: {
+    first_name: "Romain",
+    last_name: "Blanco",
+    email: "romain.blanco@gmail.com",
+    password: "password",
+    image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533279/User%20Profile%20Pictures/bigRom.jpg"
+  },
+  John: {
+    first_name: "John",
+    last_name: "Higgins",
+    email: "johnhiggins@outlook.ie",
+    password: "password",
+    image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533280/User%20Profile%20Pictures/bigJohn.png"
+  },
+  Kane: {
+    first_name: "Kane",
+    last_name: "Ryans",
+    email: "kaneryans@live.com",
+    password: "password",
+    image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533279/User%20Profile%20Pictures/bigKane.jpg"
+  },
+  Yejin: {
+    first_name: "Yejin",
+    last_name: "Jung",
+    email: "yejiin.jung@gmail.com",
+    password: "password",
+    image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533280/User%20Profile%20Pictures/bigYej.jpg"
+  },
+}
 
-3.times do
-  user = User.new(
-      first_name: Faker::Name.first_name.to_s,
-      last_name: Faker::Name.last_name.to_s,
-      email: Faker::Internet.email,
-      password: "somethingelse2018"
-      )
-  user.save
+
+Users.each do |userKey, userValue|
+  new_user = User.new(
+    first_name: userValue[:first_name],
+    last_name: userValue[:last_name],
+    email: userValue[:email],
+    password: userValue[:password]
+    )
+  new_user.remote_image_url = userValue[:image]
+  new_user.save
+
+  scooters = {
+    Honda: {
+      model: ["Activa"],
+      img: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550534415/Bike%20Photos/Honda-Activa.jpg"
+    },
+    TVS: {
+      model: ["Jupiter", "Scooty Zest 110"],
+      img: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550534416/Bike%20Photos/TVS-Scooty-Zest.jpg"
+    },
+    Suzuki: {
+      model: ["Access"],
+      img: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550534416/Bike%20Photos/Suzuki-Access.jpg"
+    },
+    Yamaha: {
+      model: ["Fascino"],
+      img: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550534416/Bike%20Photos/Yamaha-Fascino.jpg"
+    },
+    Aprilia: {
+      model: ["SR 150"],
+      img: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550534413/Bike%20Photos/Aprilia-SR150.webp"
+    }
+  }
+
+  locations = ["Canggu", "Ubud", "Denpasar", "Seminyak", "Kuta", "Uluwatu"]
 
   5.times do
     scooter = Scooter.new(
-      make: Faker::Vehicle.make.to_s,
-      model: Faker::Vehicle.model.to_s,
-      year: rand(2010..2018).to_i,
-      location: Faker::Address.city.to_s,
+      make: scooters.keys.sample.to_s,
+      year: rand(2014..2019),
+      location: locations.sample,
       reg_plate: Faker::Alphanumeric.alphanumeric(10),
-      price: rand(10..20),
-      user: user
+      price: rand(30..45),
+      user: new_user
     )
-    scooter.remote_img_url = IMAGES.sample
+    scooter.model = scooters[scooter.make.to_sym][:model].to_a.sample
+    scooter.remote_img_url = scooters[scooter.make.to_sym][:img]
     scooter.save
 
     3.times do
       booking = Booking.new(
-      amount: rand(10..20),
       scooter: scooter,
-      user: user,
-      start_date: Faker::Date.backward(120),
-      end_date: Faker::Date.forward(120),
+      user: new_user,
+      start_date: '2019-02-19',
+      end_date: '2019-02-29',
+      amount: scooter.price * 10,
       status: STATUS.sample
       )
       booking.save
 
-      3.times do
-        review = Review.new(
-          booking: booking,
-          content: Faker::Hipster.sentences,
-          rating: rand(1..5)
-        )
-        review.save
-      end
+      # 3.times do
+      #   review = Review.new(
+      #     booking: booking,
+      #     content: Faker::Hipster.sentences,
+      #     rating: rand(1..5)
+      #   )
+      #   review.save
+      # end
     end
   end
 end
-
-
-# booking = Booking.new(
-#   amount: rand(10..20),
-#   scooter: scooter,
-#   user: user,
-#   start_date: "01-02-2019",
-#   end_date: "10-02-2019",
-#   status: STATUS.sample
-# )
-# booking.save
-
-# review = Review.new(
-#     booking: booking,
-#     content: "some random string review",
-#     rating: rand(1..5)
-#   )
-# review.save
 
 puts 'Finished!'

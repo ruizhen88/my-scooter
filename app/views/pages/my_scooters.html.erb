@@ -4,7 +4,8 @@
   <%= link_to "Back to home", root_path %>
   <% @scooters_users.each do |scooter| %>
     <div class="product">
-      <img class="product-image" src="https://www.2twentyscooters.com/wp-content/uploads/2017/09/Scooter-bleu-1120_830.jpg">
+      <!-- <img class="product-image" src="https://www.2twentyscooters.com/wp-content/uploads/2017/09/Scooter-bleu-1120_830.jpg"> -->
+      <%= cl_image_tag scooter.img,height: 150, width: 250, crop: :fill %>
       <div class="product-body">
         <h3><%= scooter.make %> <%= scooter.model %></h3>
         <p>Registration Plate: <%= scooter.reg_plate %></p>
@@ -13,7 +14,6 @@
         <li>
           <strong>Price per day</strong>
           <p><%= scooter.price%></p>
-        </li>
         </li>
       </ul>
     </div>

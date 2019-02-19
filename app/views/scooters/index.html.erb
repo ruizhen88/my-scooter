@@ -1,9 +1,9 @@
-<h1>Scooters in Canggu </h1>
 
 <div class="container">
   <div class="row">
+    <h1 class="text-center"><%= @scooters.size %> Scooters found in Bali</h1>
     <% @scooters.each do |scooter| %>
-      <div class="col-xs-12 col-sm-3">
+      <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="card">
           <div class="card-image">
             <%= cl_image_tag scooter.img, height: 250, width: 350, crop: :fill%>
@@ -15,7 +15,7 @@
               <div class="card-description-right"><p><%= scooter.location %></p></div>
             <% end %>
           </div>
-          <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-user avatar-large"/>
+          <%= cl_image_tag scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
         </div>
       </div>
     <% end %>
