@@ -39,14 +39,7 @@ Users = {
     email: "kaneryans@live.com",
     password: "password",
     image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533279/User%20Profile%20Pictures/bigKane.jpg"
-  },
-  Yejin: {
-    first_name: "Yejin",
-    last_name: "Jung",
-    email: "yejiin.jung@gmail.com",
-    password: "password",
-    image: "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533280/User%20Profile%20Pictures/bigYej.jpg"
-  },
+  }
 }
 
 
@@ -97,28 +90,50 @@ Users.each do |userKey, userValue|
     scooter.model = scooters[scooter.make.to_sym][:model].to_a.sample
     scooter.remote_img_url = scooters[scooter.make.to_sym][:img]
     scooter.save
-
-    3.times do
-      booking = Booking.new(
-      scooter: scooter,
-      user: new_user,
-      start_date: '2019-02-19',
-      end_date: '2019-02-29',
-      amount: scooter.price * 10,
-      status: STATUS.sample
-      )
-      booking.save
-
-      # 3.times do
-      #   review = Review.new(
-      #     booking: booking,
-      #     content: Faker::Hipster.sentences,
-      #     rating: rand(1..5)
-      #   )
-      #   review.save
-      # end
-    end
   end
 end
+
+customer_image = "https://res.cloudinary.com/dx9npfvqu/image/upload/v1550533280/User%20Profile%20Pictures/bigYej.jpg"
+customer = User.new(
+    first_name: "Yejin",
+    last_name: "Jung",
+    email: "yejiin.jung@gmail.com",
+    password: "password"
+)
+customer.remote_image_url = customer_image
+customer.save
+
+new_booking = Booking.new(
+    scooter: Scooter.find(1),
+    user: User.last,
+    start_date: Date.today,
+    end_date: Date.new(2019,rand(2..3),rand(1..25)),
+    status: STATUS.sample
+)
+new_booking.save
+
+# Users.each do |key, value|
+#   10.times do
+#     booking = Booking.new(
+#     scooter: Scooter.
+#     user: User.where.not(first_name: value)
+#     start_date: Date.today,
+#     end_date: Date.new(2019,rand(2..3),rand(1..25)),
+#     status: STATUS.sample
+#     )
+#     booking.amount = scooter.price * (booking.end_date - booking.start_date).to_i
+#     booking.save
+#   end
+# end
+
+
+  # 3.times do
+  #   review = Review.new(
+  #     booking: booking,
+  #     content: Faker::Hipster.sentences,
+  #     rating: rand(1..5)
+  #   )
+  #   review.save
+  # end
 
 puts 'Finished!'
