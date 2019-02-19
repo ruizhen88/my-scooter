@@ -1,6 +1,6 @@
 <div class="index-body">
   <div class="results">
-    <h1>Scooters in Bali</h1>
+    <h1 class="text-center"><%= @scooters.size %> Scooters found in Bali</h1>
     <div class="container">
       <div class="row">
         <% @scooters.each do |scooter| %>
@@ -16,7 +16,7 @@
                   <div class="card-description-right"><p><%= scooter.location %></p></div>
                 <% end %>
               </div>
-              <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-user avatar-large"/>
+              <%= cl_image_tag scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
             </div>
           </div>
         <% end %>

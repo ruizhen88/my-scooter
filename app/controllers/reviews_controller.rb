@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
     @user = User.find(params[:user_id])
     @booking = Booking.find(params[:booking_id])
     authorize @review
+    @rate = [1, 2, 3, 4, 5]
   end
 
   def create

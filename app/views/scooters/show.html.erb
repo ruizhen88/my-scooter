@@ -45,7 +45,7 @@
             <% end %>
             <p><%= review.content %></p>
           </div>
-          <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-user avatar-large"/>
+          <%= cl_image_tag @scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
         </div>
       </div>
     <% end %>
