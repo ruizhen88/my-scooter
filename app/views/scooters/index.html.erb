@@ -1,26 +1,24 @@
 <div class="index-body">
-  <div class="results">
-    <h1 class="text-center"><%= @scooters.size %> Scooters found in Bali</h1>
-    <div class="container">
-      <div class="row">
-        <% @scooters.each do |scooter| %>
-          <div class="col-xs-12 col-sm-6 col-lg-3">
-            <div class="card">
-              <div class="card-image">
-                <%= cl_image_tag scooter.img, height: 250, width: 350, crop: :fill%>
-              </div>
-              <div class="card-description">
-                <%= link_to(scooter) do %>
-                  <h2><%= scooter.make %> <%= scooter.model %> (<%= scooter.year %>)</h2>
-                  <p> <%= scooter.price %> IDR/day </p>
-                  <div class="card-description-right"><p><%= scooter.location %></p></div>
-                <% end %>
-              </div>
-              <%= cl_image_tag scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
+  <div class="scooter-container">
+    <div class="row">
+      <h1 class="text-center banner_small"><%= @scooters.size %> Scooters found in Bali</h1>
+      <% @scooters.each do |scooter| %>
+        <div class="col-xs-12 col-sm-3">
+          <div class="card">
+            <div class="card-image">
+              <%= cl_image_tag scooter.img, height: 250, width: 350, crop: :fill%>
             </div>
+            <div class="card-description">
+              <%= link_to(scooter) do %>
+                <h2><%= scooter.make %> <%= scooter.model %> (<%= scooter.year %>)</h2>
+                <p> <%= scooter.price %> IDR/day </p>
+                <div class="card-description-right"><p><%= scooter.location %></p></div>
+              <% end %>
+            </div>
+            <%= cl_image_tag scooter.user.image, crop: :fill, class: "card-user avatar-large" %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     </div>
   </div>
   <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">

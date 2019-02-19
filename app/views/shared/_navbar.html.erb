@@ -12,6 +12,7 @@
       <!-- Links when logged in -->
 
       <% if current_user.scooters.present? %>
+        <%= link_to "Add a Scooter", new_scooter_path, class: "navbar-wagon-item navbar-wagon-link" %>
         <%= link_to "My Scooters", my_scooters_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <% else %>
         <%= link_to "Add a Scooter", new_scooter_path, class: "navbar-wagon-item navbar-wagon-link" %>

@@ -1,9 +1,4 @@
-<div class="showbanner" >
-  <div class="showbanner-content">
-    <div class="btn btn-danger btn-lg"><%= link_to "BOOK NOW", new_scooter_booking_path(@scooter) %>
-    </div>
-  </div>
-</div>
+<h1 class="banner_small">This is <%= @scooter.user.first_name %>'s scooter </h1>
 
 <div class="container">
   <div class="row">
@@ -52,7 +47,31 @@
   </div>
 </div>
 
-<%= link_to " < Return to the list", scooters_path %>
+<div class="contact-btn">
+  <div class="row">
+    <div class="col-xs-12 ">
+      <div class="text-center">
+        <div class="btn btn-danger ">
+          <%= link_to "Book now", new_scooter_booking_path(@scooter) %>
+        </div>
+        <div class="btn btn-danger">
+          <% if current_user.present? %>
+            <%= link_to 'Message', conversations_path(sender_id: @current_user.id, recipient_id: @scooter.user.id), method: 'post'%>
+          <% else %>
+            <%= link_to "Please sign up to message the owner", new_user_registration_path %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<br> <p> <small> <%= link_to " < Return to the list", scooters_path %> </small>  </p>
+
+
+
 
 <%= link_to 'Message', conversations_path(sender_id: @current_user.id, recipient_id: @scooter.user.id), method: 'post'%>
 <br><br>
+
