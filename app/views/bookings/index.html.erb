@@ -1,6 +1,9 @@
 <!-- Need a redirection and root -->
 <div class="container">
-  <h1>My bookings</h1>
+
+
+
+  <h1 class="text-center banner_small">My bookings</h1>
   <%= link_to "Back to home", root_path %>
   <% @bookings.each do |booking| %>
     <div class="product">
@@ -12,27 +15,26 @@
       </div>
       <ul class="list-inline product-controls hidden-sm hidden-xs">
         <li>
-          <strong>Total price</strong>
-          <p><%= booking.amount %> IDR</p>
+          <strong>Total (IRD) </strong>
+          <p><%= booking.scooter.price * (booking.end_date - booking.start_date).to_i %></p>
         </li>
         <li>
-          <strong>Start date</strong>
+          <strong>Start</strong>
           <p><%= booking.start_date %></p>
         </li>
         <li>
-          <strong>End date</strong>
+          <strong>End</strong>
           <p><%= booking.end_date %></p>
         </li>
         <li>
           <% if policy(booking).edit? %>
-            <%= link_to booking.status, edit_scooter_booking_path(booking.scooter, booking)  %>
+            <p> <%= link_to booking.status, edit_scooter_booking_path(booking.scooter, booking)  %></p>
           <% else %>
             <strong>Status</strong>
           <% end %>
         </li>
         <li>
-          <strong>Review</strong>
-          <p><%= link_to "Leave a Review", new_user_booking_review_path(booking.user_id, booking.id) %></p>
+          <p><%= link_to "Review", new_user_booking_review_path(booking.user_id, booking.id) %></p>
         </li>
       </ul>
     </div>
