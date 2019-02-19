@@ -19,7 +19,8 @@
       <% end %>
       <%#= link_to "Scooters", scooters_path(current_user), action: :list_user_scooters, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to "Bookings", user_bookings_path(current_user), class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", conversations_path, class: "navbar-wagon-item navbar-wagon-link" %>
+
+      <span> <%= link_to "Messages", conversations_path, class: "message navbar-wagon-item navbar-wagon-link" %> <span class="badge">1</span> </span>
 
       <!-- Avatar with dropdown menu -->
       <div class="navbar-wagon-item">
