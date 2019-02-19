@@ -1,4 +1,4 @@
-<div class="inbox-container col-sm-10 col-sm-offset-1">
+<div class="inbox-container col-sm-6 col-sm-offset-2">
   <div><h3>Inbox</h3></div>
   <% @conversations.each do |conversation| %>
     <div class="inbox-card">
@@ -11,9 +11,9 @@
         <% end %>
 
         <%= cl_image_tag @recipient.image, crop: :fill, class: "card-user avatar-large" %>
-
+        From:
         <%= link_to(conversation_messages_path(conversation)) do %>
-          From: <%= @recipient.first_name.capitalize %>
+          <%= @recipient.first_name.capitalize %>
         <% end %>
 
       <% end %>
