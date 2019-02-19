@@ -5,19 +5,10 @@ class MessagesController < ApplicationController
   end
 
   def index
+    @conversations = Conversation.all
+    @conversations = policy_scope(Conversation)
+    authorize @conversations
     @messages = @conversation.messages
-    # raise
-    # if @messages.length > 10
-    #   @over_ten = true
-    #   @messages = @messages[-10..-1]
-    # end
-    # if params[:m]
-    #   @over_ten = false
-    #   @messages = @conversation.messages
-    # end
-    # if @messages.last
-    #   @messages.last.read = true if @messages.last.user_id != current_user.id
-    # end
     @message = @conversation.messages.new
     authorize @messages
   end

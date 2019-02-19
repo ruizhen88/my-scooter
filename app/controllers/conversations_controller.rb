@@ -18,8 +18,6 @@ class ConversationsController < ApplicationController
     authorize @conversation
   end
 
-
-
   private
 
   def conversation_params

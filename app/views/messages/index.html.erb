@@ -1,34 +1,69 @@
-<h3><%= @current_user.first_name.capitalize %>'s Mailbox</h3>
+<div class="inbox-container col-sm-10 col-sm-offset-1">
 
-<div>
-  <% @messages.each do |message| %>
-    <% if message.body %>
+  <div class="inbox">
+    <div>
+      <p>Messages List:</p>
+      <% @conversations.each do |conversation| %>
+        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% @recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% @recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to(conversation_messages_path(conversation)) do%>
+            <div class="contact">
+              <%= @recipient.first_name.capitalize %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 
-      <% user = User.find(message.user_id) %>
-      <div class="item">
-        <div class="content">
-          <div class="header"><strong><%= user.first_name %></strong> <%= message.message_time %></div>
-          <div class="list">
-            <div class="item">
-              <i class="right triangle icon"></i>
-              <%= message.body %>
+  <div class="messages">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+        <% if user == @current_user %>
+
+          <div class="message-card">
+            <div class="message-content">
+              <%= message.body %> <br>
+              <p>
+               <strong><%= user.first_name.capitalize %></strong> @
+                <%= message.message_time %>
+              </p>
+            </div>
+            <%= image_tag "avatar_pic_sonia.jpg", class: "avatar-message" %>
+          </div>
+
+        <% else %>
+
+          <div class="message-card-recipient">
+            <%= image_tag "guido_moto.jpg", class: "avatar-message" %>
+            <div class="message-content">
+              <%= message.body %> <br>
+              <p>
+               <strong><%= user.first_name.capitalize %></strong> @
+                <%= message.message_time %>
+              </p>
             </div>
           </div>
-        </div>
-      </div>
+
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+    <div class="new-message">
+      <%= form_for [@conversation, @message], html: {class: "new-message-content"} do |f| %>
+        <div class="field">
+          <%= f.text_area :body, class: "form-control" %>
+        </div>
+          <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+        <div class="send-button">
+          <%= f.submit "Send" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 </div>
-
-<%= form_for [@conversation, @message], html: {class: "ui reply form"} do |f| %>
-  <div class="field">
-    <%= f.text_area :body, class: "form-control" %>
-  </div>
-    <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
-  <div>
-    <%= f.submit "Add Reply", class: "ui blue labeled submit icon button" %>
-  </div>
-
-<% end %>
-
-
