@@ -34,7 +34,7 @@
                 <%= message.message_time %>
               </p>
             </div>
-            <%= image_tag "avatar_pic_sonia.jpg", class: "avatar-message" %>
+            <%= cl_image_tag user.image, class: "avatar-message" %>
           </div>
 
         <% else %>
